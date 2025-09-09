@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.mrochaol.jsp_desafio01.entities.Order;
 
 @Service
-public class OrderService extends ShippingService {
+public class OrderService {
 		
 	@Autowired
 	private ShippingService shippingService;
