@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.mrochaol.jsp_desafio01.entities.Order;
 import com.mrochaol.jsp_desafio01.services.OrderService;
+import com.mrochaol.jsp_desafio01.services.ShippingService;
 
 @SpringBootApplication
 public class JspDesafio01Application implements CommandLineRunner {
@@ -17,7 +18,9 @@ public class JspDesafio01Application implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		OrderService orderService = new OrderService();		
+		ShippingService shippingService = new ShippingService();
+		
+		OrderService orderService = new OrderService(shippingService);		
 		
 		Order order1 = new Order(1034, 150.0, 20.0);
 		Order order2 = new Order(2282, 800.0, 10.0);

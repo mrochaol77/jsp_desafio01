@@ -8,21 +8,17 @@ import com.mrochaol.jsp_desafio01.entities.Order;
 @Service
 public class OrderService extends ShippingService {
 		
+	@Autowired
+	private ShippingService shippingService;
+	
+	public OrderService(ShippingService shippingService) {
+		this.shippingService = shippingService;
+	}
+	
 	public Double total(Order order) {
-		Double shippingValue = shipment(order);
+		Double shippingValue = shippingService.shipment(order);
 		Double discountValue = order.getBasic() * (order.getDiscount() / 100); 
 		return (order.getBasic() - discountValue + shippingValue);
-	}
-
-	@Override
-	public Double shipment(Order order) {
-		if (order.getBasic() < 100.0) {
-			return 20.0;			
-		} else if (order.getBasic() >= 100.0 && order.getBasic() < 200.0) {
-			return 12.0;			
-		} else {
-			return 0.0;			
-		}
 	}
 
 }
